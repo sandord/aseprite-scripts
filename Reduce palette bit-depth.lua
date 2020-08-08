@@ -35,8 +35,6 @@ local function alterPalette()
   app.transaction(
     function()
       local pal = spr.palettes[1]
-
-      -- The mask will clear the lower bits from each component, leaving 3 (ST) or 4 (STE) bits in place, which matches the range of the shifter chip.
       local mask = (0xff << (8 - dlg.data.bits)) & 0xff
 
       -- The multiplier will optionally fix the dynamic range.
