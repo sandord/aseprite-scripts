@@ -1,6 +1,10 @@
 ----------------------------------------------------------------------
 -- Reduces the bit-depth of the palette colors.
 ----------------------------------------------------------------------
+-- Author:  Sandor Drieënhuizen
+-- Source:  https://github.com/sandord/aseprite-scripts
+-- License: MIT
+----------------------------------------------------------------------
 
 local spr = app.activeSprite
 
