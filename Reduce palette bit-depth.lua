@@ -42,7 +42,7 @@ local function alterPalette()
       local pal = spr.palettes[1]
       local mask = (0xff << (8 - dlg.data.bits)) & 0xff
       
-      -- The multiplier will optionally fix the dynamic range.
+      -- The multiplier is used to fix the dynamic range.
       local mply
 
       if dlg.data.fixDR == true then
@@ -55,12 +55,12 @@ local function alterPalette()
       local rounding_center
       
       if dlg.data.rounding == true then
-        rounding_center = 1 << 8 - dlg.data.bits - 1;
+        rounding_center = (1 << 8 - dlg.data.bits - 1) - 1;
       else
         rounding_center = 0
       end
 
-      for i = 0,#pal-1 do
+      for i = 0, #pal - 1 do
         local color = pal:getColor(i)
                 
         color.red = ((math.min(color.red + rounding_center, 255)) & mask) * mply
@@ -114,8 +114,8 @@ dlg
     end
   }
   :separator{ text="Options" }
-  :check{ label="Fix dynamic range:", id="fixDR", selected=true }
-  :check{ label="Use rounding:", id="rounding", selected=true }
+  :check{ label="Fix dynamic range:", id="fixDR", selected=false }
+  :check{ label="Use rounding:", id="rounding", selected=false }
 
 dlg:button{ text="&Help",onclick=function() showHelp() end }
 dlg:button{ text="&OK", focus=true, onclick=function() alterPalette() end }
